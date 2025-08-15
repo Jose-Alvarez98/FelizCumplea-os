@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Mi vida!</title>
+    <style>
+        /* CSS - Estilos bonitos */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .birthday-card {
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header p {
+            margin: 10px 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .content {
+                flex-direction: row;
+            }
+        }
+        
+        .photo-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            border: 10px solid #f8d7da;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .message-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .message {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .message:before {
+            content: '"';
+            font-size: 80px;
+            color: #ff9a9e;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            opacity: 0.3;
+        }
+        
+        .message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .signature {
+            margin-top: 20px;
+            text-align: right;
+            font-style: italic;
+            color: #ff9a9e;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+            animation: fall 5s linear infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+        
+        @keyframes beat {
+            to {
+                transform: scale(1.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="birthday-card">
+        <div class="header">
+            <h1>¡Feliz Cumpleaños Mi vida! <span class="heart">❤</span></h1>
+            <p>Que este día esté lleno de alegría y felicidad</p>
+        </div>
+        
+        <div class="content">
+            <div class="photo-container">
+                <div class="photo-frame">
+                    <!-- Reemplaza con la URL de la foto de la persona -->
+                    <img src="https://drive.google.com/uc?export=view&id=1GBpabyV-RE65By9FSqUarwTu9DwwitOb" alt="Foto de cumpleaños" id="birthday-photo">
+                </div>
+            </div>
+            
+            <div class="message-container">
+                <div class="message">
+                    <p id="birthday-message">Hoy es un día muy especial porque celebramos tu existencia. Eres una persona increíble que ilumina la vida de todos los que te rodean. Que este nuevo año de vida esté lleno de bendiciones, amor, salud y muchos sueños cumplidos. ¡Disfruta tu día al máximo!</p>
+                    <div class="signature">Con mucho cariño</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 22-08-<span id="current-year"></span> - Hecho con Amor para ti, <span class="heart">❤</span> TE QUIERO MUCHO <span class="heart">❤</span></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para personalizar y efectos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer el año actual
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Crear confeti
+            createConfetti();
+            
+            // Puedes personalizar estos valores con los datos reales
+            const birthdayPerson = {
+                name: "Diana Garces",
+                photoUrl: "https://lh3.googleusercontent.com/d/1GBpabyV-RE65By9FSqUarwTu9DwwitOb", // Reemplaza con la URL real
+                message: `Querida Diana,\n\nEn este día tan especial, quiero recordarte lo increíble que eres. Tu sonrisa ilumina mis días y tu corazón es un regalo para todos los que te conocen. Que este nuevo año de vida te traiga todo lo que deseas y mucho más. ¡Feliz cumpleaños!`
+            };
+            
+            // Personalizar el mensaje (reemplaza [Nombre] si está en el mensaje)
+            const messageElement = document.getElementById('birthday-message');
+            messageElement.innerHTML = birthdayPerson.message.replace(/\[Nombre\]/g, birthdayPerson.name);
+            
+            // Establecer la foto (asegúrate de que la URL sea correcta)
+            const photoElement = document.getElementById('birthday-photo');
+            photoElement.src = birthdayPerson.photoUrl;
+            photoElement.alt = `Foto de ${birthdayPerson.name}`;
+            
+            // Efecto de escritura para el mensaje (opcional)
+            typeWriter(messageElement, messageElement.textContent);
+        });
+        
+        function createConfetti() {
+            const colors = ['#ff9a9e', '#fad0c4', '#a18cd1', '#fbc2eb', '#ffecd2', '#fcb69f'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+        
+        function typeWriter(element, text, i = 0) {
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i + 1) + '<span aria-hidden="true"></span>';
+                setTimeout(() => typeWriter(element, text, i + 1), 20);
+            }
+        }
+    </script>
+</body>
+</html>
